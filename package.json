@@ -1,0 +1,35 @@
+{
+  "name": "ai-benchmark",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Web-based AI model benchmarking system (MVP).",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "nohoist": []
+  },
+  "scripts": {
+    "build": "npm run -ws build",
+    "dev": "npm run -ws dev",
+    "lint": "npm run -ws lint",
+    "format": "prettier --write .",
+    "typecheck": "npm run -ws typecheck",
+    "install:web": "npm install -w @ai-benchmark/web",
+    "install:api": "npm install -w @ai-benchmark/api",
+    "install:shared": "npm install -w @ai-benchmark/shared",
+    "install:all": "npm run install:shared && npm run install:web && npm run install:api",
+    "start": "concurrently \"npm run dev -w @ai-benchmark/api\" \"npm run dev -w @ai-benchmark/web\" --names \"API,WEB\" --prefix-colors \"blue,green\"",
+    "start:api": "npm run dev -w @ai-benchmark/api",
+    "start:web": "npm run dev -w @ai-benchmark/web"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}

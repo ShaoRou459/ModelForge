@@ -1,0 +1,40 @@
+:root, .theme-dark {
+  --bg: #0b0f13;
+  /* Primary surface token used across the app (fix for transparent popups) */
+  --surface: #0f141a;
+  --surface-1: #0f141a;
+  --surface-2: #141a22;
+
+  --text: #e6edf3;
+  --text-dim: #9fb1c1;
+  --border: #1e2630;
+
+  --accent: #4cc2ff;
+  --accent-600: #3fb5f2;
+  --accent-300: #66d0ff;
+
+  --success: #3ddc97;
+  --warn: #ffd166;
+  --danger: #ff6b6b;
+  --muted: #6b7785;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --elev-1: 0 6px 18px rgba(0,0,0,0.25);
+  --elev-2: 0 10px 30px rgba(0,0,0,0.35);
+  --elev-accent: 0 10px 30px rgba(76, 194, 255, 0.08);
+
+  --dur-quick: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+
+  --ease-standard: cubic-bezier(.2,.8,.2,1);
+  --ease-emphasized: cubic-bezier(.2,.0,0,1);
+  --focus-ring: 0 0 0 2px #0b0f13, 0 0 0 4px rgba(76, 194, 255, 0.65);
+
+  /* Layout density scale */
+  --density-scale: 1;
+}
+
