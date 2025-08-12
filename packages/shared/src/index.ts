@@ -1,4 +1,4 @@
-// Shared types and utilities for AI Benchmark
+// Shared types and utilities for ModelForge
 
 export type UUID = string;
 

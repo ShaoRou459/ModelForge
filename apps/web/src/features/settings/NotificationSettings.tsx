@@ -96,7 +96,7 @@ export default function NotificationSettings() {
         <button
           onClick={() => {
             if (settings.browserNotifications && Notification.permission === 'granted') {
-              new Notification('AI Benchmark', {
+              new Notification('ModelForge', {
                 body: 'This is a test notification!',
                 icon: '/favicon.ico'
               });

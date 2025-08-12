@@ -1,5 +1,5 @@
 {
-  "name": "@ai-benchmark/api",
+  "name": "@model-forge/api",
   "private": true,
   "version": "0.1.0",
   "type": "module",

@@ -10,6 +10,7 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const [rollingCount, setRollingCount] = useState<number>(10);
+  const [showWorstModels, setShowWorstModels] = useState<boolean>(false);
   const runs = useQuery({ queryKey: ['runs', 'dash'], queryFn: () => listRuns({ limit: 50 }) });
   const modelsQ = useQuery({ queryKey: ['models', 'dash'], queryFn: () => listModels() });
   const problemSetsQ = useQuery({ queryKey: ['problemSets', 'dash'], queryFn: () => listProblemSets() });
@@ -121,16 +122,21 @@ export default function DashboardPage() {
       return avgB - avgA; // Descending order (best first)
     });
 
+    // Get the desired models based on toggle (top 3 or worst 3)
+    const selectedModelIds = showWorstModels ? 
+      modelIdsOrdered.slice(-3).reverse() : // Get worst 3 and reverse to show worst first
+      modelIdsOrdered.slice(0, 3); // Get top 3
+
     const accuracyByModel = {
-      labels: modelIdsOrdered.map((id) => {
+      labels: selectedModelIds.map((id) => {
         const lab = (modelLabel.get(id) || '').toString().trim();
         return lab.length > 0 ? lab : id.slice(0, 6);
       }),
-      values: modelIdsOrdered.map((id) => {
+      values: selectedModelIds.map((id) => {
         const v = byModel.get(id)!;
         return v.count ? Math.round(v.scoreSum / v.count) : 0;
       }),
-      ids: modelIdsOrdered,
+      ids: selectedModelIds,
     };
 
     // Average scores by benchmark/problem set
@@ -216,7 +222,7 @@ export default function DashboardPage() {
 
     // Dependency safety: compute a simple key from result sizes
     return { kpis, accuracyByModel, benchmarkScores, problemDifficulty };
-  }, [runs.data, resultQueries.map((q) => (q.data ? (q.data as unknown[]).length : -1)).join(','), modelsQ.data, problemSetsQ.data]);
+  }, [runs.data, resultQueries.map((q) => (q.data ? (q.data as unknown[]).length : -1)).join(','), modelsQ.data, problemSetsQ.data, showWorstModels]);
 
   return (
     <div className="grid gap-6 animate-fade-in">
@@ -260,25 +266,55 @@ export default function DashboardPage() {
         {/* Average Score by Model */}
         <div className="card h-80 p-4 xl:col-span-1 animate-scale-in hover-lift" style={{ animationDelay: '0.5s' }}>
           <div className="flex items-center justify-between mb-2">
-            <div className="text-xs text-textDim">Model Performance Comparison (last {Math.min(recentRuns.length || 0, 10)} runs)</div>
-            <button className="text-xs text-textDim hover:text-text transition-all duration-200 hover:scale-105" onClick={() => navigate('/runs')}>View Runs</button>
+            <div className="text-xs text-textDim">Models ({showWorstModels ? 'Worst' : 'Best'})</div>
+            <div className="flex items-center gap-2">
+              <button 
+                className="text-xs px-2 py-1 rounded border transition-all duration-200 hover:scale-105"
+                style={{ 
+                  borderColor: showWorstModels ? 'var(--accent)' : 'var(--border)',
+                  color: showWorstModels ? 'var(--accent)' : 'var(--textDim)' 
+                }}
+                onClick={() => setShowWorstModels(!showWorstModels)}
+              >
+                {showWorstModels ? 'Best' : 'Worst'}
+              </button>
+              <button className="text-xs text-textDim hover:text-text transition-all duration-200 hover:scale-105" onClick={() => navigate('/runs')}>View Runs</button>
+            </div>
           </div>
           <ReactECharts
             style={{ height: '100%' }}
             option={{
               backgroundColor: 'transparent',
               color: ['#66d0ff', '#4cc2ff', '#3fb5f2', '#2aa4df', '#1c8ccc'],
-              grid: { left: 40, right: 20, top: 20, bottom: 30 },
-              xAxis: { type: 'category', data: accuracyByModel.labels, axisLine: { lineStyle: { color: '#344556' } }, axisLabel: { color: '#9fb1c1' } },
+              grid: { left: 40, right: 20, top: 20, bottom: 70 }, // Increased bottom margin even more for slanted labels
+              xAxis: { 
+                type: 'category', 
+                data: accuracyByModel.labels, 
+                axisLine: { lineStyle: { color: '#344556' } }, 
+                axisLabel: { 
+                  color: '#9fb1c1',
+                  rotate: -25, // Less aggressive tilt
+                  interval: 0, // Show all labels
+                  fontSize: 11
+                } 
+              },
               yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: '#344556' } }, splitLine: { lineStyle: { color: '#1e2630' } }, axisLabel: { color: '#9fb1c1' } },
               series: [
                 {
                   type: 'bar', data: accuracyByModel.values,
-                  itemStyle: { color: '#4cc2ff' },
-                  emphasis: { itemStyle: { color: '#66d0ff' } },
+                  itemStyle: { color: showWorstModels ? '#ff6b6b' : '#4cc2ff' }, // Different color for worst models
+                  emphasis: { itemStyle: { color: showWorstModels ? '#ff8a8a' : '#66d0ff' } },
                 },
               ],
-              tooltip: { trigger: 'axis' },
+              tooltip: { 
+                trigger: 'axis',
+                formatter: (params: any) => {
+                  const value = params[0]?.value;
+                  const name = params[0]?.name;
+                  const rank = showWorstModels ? 'Worst performing' : 'Top performing';
+                  return `${name}<br/>${rank}<br/>Average Score: ${value}%`;
+                }
+              },
             }}
             onEvents={{
               click: (params: any) => {

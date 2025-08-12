@@ -1,4 +1,4 @@
-:root, .theme-dark {
+:root, [data-theme="dark"] {
   --bg: #0b0f13;
   /* Primary surface token used across the app (fix for transparent popups) */
   --surface: #0f141a;
@@ -7,6 +7,7 @@
 
   --text: #e6edf3;
   --text-dim: #9fb1c1;
+  --textDim: #9fb1c1; /* Alternative naming for consistency */
   --border: #1e2630;
 
   --accent: #4cc2ff;
@@ -36,5 +37,32 @@
 
   /* Layout density scale */
   --density-scale: 1;
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --surface-1: #f8fafc;
+  --surface-2: #f1f5f9;
+
+  --text: #1e293b;
+  --text-dim: #64748b;
+  --textDim: #64748b;
+  --border: #e2e8f0;
+
+  --accent: #0ea5e9;
+  --accent-600: #0284c7;
+  --accent-300: #38bdf8;
+
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --muted: #94a3b8;
+
+  --elev-1: 0 2px 8px rgba(0,0,0,0.08);
+  --elev-2: 0 4px 16px rgba(0,0,0,0.12);
+  --elev-accent: 0 4px 16px rgba(14, 165, 233, 0.15);
+
+  --focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px rgba(14, 165, 233, 0.65);
 }
 

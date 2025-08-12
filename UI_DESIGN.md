@@ -1,4 +1,4 @@
-## AI Benchmark — UI Design and Build Plan
+## ModelForge — UI Design and Build Plan
 
 This document specifies the complete rebuild of the frontend(s) with a minimalist, Windows 11–inspired dark aesthetic. It defines principles, tech stack, information architecture, page specifications, components, motion, and an implementation roadmap.
 

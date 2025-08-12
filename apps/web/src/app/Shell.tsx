@@ -48,7 +48,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
               <span className="sr-only">Logo</span>
             </AnimatedCard>
             <div>
-              <div className="text-sm text-textDim">AI Benchmark</div>
+              <div className="text-sm text-textDim">ModelForge</div>
               <div className="text-xs text-textDim/70">MVP</div>
             </div>
           </ScaleIn>

@@ -44,7 +44,7 @@ export default function SettingsPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'ai-benchmark-settings.json';
+    a.download = 'model-forge-settings.json';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

@@ -1905,13 +1905,6 @@ app.get('/api/runs/:id/stream', async (req, reply) => {
   // Don't close the connection - let it stay open for SSE
   return new Promise(() => {}); // Never resolves, keeps connection open
 });
-app.listen({ port: 3001, host: '0.0.0.0' }, (err, address) => {
-  if (err) {
-    app.log.error(err);
-    process.exit(1);
-  }
-  app.log.info(`Server listening at ${address}`);
-});
 
 // Helper to emit SSE to all subscribers of a run
 function emitSSE(runId: string, event: string, payload: any) {

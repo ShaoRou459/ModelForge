@@ -1,5 +1,5 @@
 {
-  "name": "ai-benchmark",
+  "name": "model-forge",
   "private": true,
   "version": "0.1.0",
   "description": "Web-based AI model benchmarking system (MVP).",
@@ -17,15 +17,17 @@
     "lint": "npm run -ws lint",
     "format": "prettier --write .",
     "typecheck": "npm run -ws typecheck",
-    "install:web": "npm install -w @ai-benchmark/web",
-    "install:api": "npm install -w @ai-benchmark/api",
-    "install:shared": "npm install -w @ai-benchmark/shared",
+    "install:web": "npm install -w @model-forge/web",
+    "install:api": "npm install -w @model-forge/api",
+    "install:shared": "npm install -w @model-forge/shared",
     "install:all": "npm run install:shared && npm run install:web && npm run install:api",
-    "start": "concurrently \"npm run dev -w @ai-benchmark/api\" \"npm run dev -w @ai-benchmark/web\" --names \"API,WEB\" --prefix-colors \"blue,green\"",
-    "start:api": "npm run dev -w @ai-benchmark/api",
-    "start:web": "npm run dev -w @ai-benchmark/web"
+    "start": "concurrently \"npm run dev -w @model-forge/api\" \"npm run dev -w @model-forge/web\" --names \"API,WEB\" --prefix-colors \"blue,green\"",
+    "start:api": "npm run dev -w @model-forge/api",
+    "start:web": "npm run dev -w @model-forge/web",
+    "clean:db": "node -e \"const fs=require('fs'),path=require('path');['apps/api/benchmark.db','apps/api/apps/api/var'].forEach(p=>{try{if(fs.existsSync(p)){if(fs.statSync(p).isDirectory()){fs.rmSync(p,{recursive:true,force:true})}else{fs.unlinkSync(p)}}console.log('Cleaned:',p)}catch(e){console.log('Could not clean:',p,e.message)}})\""
   },
   "devDependencies": {
+    "concurrently": "^9.2.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
   },

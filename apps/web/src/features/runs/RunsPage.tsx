@@ -188,6 +188,7 @@ export default function RunsPage() {
         <div ref={rightRef} className="min-h-[70vh] flex flex-col gap-4">
           {!activeRun && (
             <NewRunForm
+              key={`new-run-form-${benchmarkSettings.defaultJudgeModelId}`}
               onSubmit={(values) => createMut.mutate(values)}
               isSubmitting={createMut.isPending}
               error={createMut.isError ? String(createMut.error) : null}

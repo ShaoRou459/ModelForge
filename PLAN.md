@@ -1,4 +1,4 @@
-# AI Benchmark - Project Plan
+# ModelForge - Project Plan
 
 This document captures the scoped MVP and phased delivery so we don't get lost during implementation. It also doubles as the living spec for the codebase.
 

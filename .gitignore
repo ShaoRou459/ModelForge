@@ -30,4 +30,9 @@ Thumbs.db
 # SQLite
 *.sqlite
 *.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.db
 apps/api/var/
+apps/api/apps/api/var/
+apps/api/benchmark.db

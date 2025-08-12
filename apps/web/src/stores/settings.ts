@@ -164,7 +164,7 @@ export const useSettingsStore = create<SettingsStore>()(
       },
     }),
     {
-      name: 'ai-benchmark-settings',
+      name: 'model-forge-settings',
       version: 1,
     }
   )
