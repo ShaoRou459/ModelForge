@@ -267,9 +267,6 @@ VITE_API_URL=http://localhost:5174
 
 ### Common Issues
 
-#### "Failed to load useTranslation.ts"
-This is a known development issue. The file doesn't exist but the app should still work. Refresh the page if you see this error.
-
 #### Database Connection Issues
 1. Ensure database directory is writable
 2. Check if another instance is running
@@ -323,10 +320,6 @@ docker-compose up
 3. Commit changes: `git commit -m 'Add amazing feature'`
 4. Push to branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
