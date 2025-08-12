@@ -52,6 +52,8 @@ ModelForge is designed to help developers, researchers, and organizations system
 - **No API key exposure** to frontend
 - **Rate limiting** and CORS protection
 
+![Demo(1)](https://github.com/user-attachments/assets/387d8ca4-f2ea-4f3e-86a7-766de11510fa)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
