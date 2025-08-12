@@ -1,6 +1,6 @@
 # ⚒️ ModelForge
 
-**A comprehensive web-based AI model benchmarking system for evaluating and comparing AI models across multiple providers and problem sets.**
+**A comprehensive web-based AI model benchmarking system for evaluating and comparing AI models across multiple providers and problem sets.**   |  [中文ReadMe](https://github.com/ShaoRou459/ModelForge/blob/master/README_zh.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18.18.0+-green.svg)](https://nodejs.org/)
