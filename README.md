@@ -302,12 +302,6 @@ VITE_API_URL=http://localhost:5174
 npm run build
 ```
 
-### Docker (Future)
-```bash
-# Coming soon
-docker-compose up
-```
-
 ### Cloud Deployment
 - **API**: Render, Fly.io, or Railway
 - **Web**: Vercel, Netlify, or GitHub Pages
