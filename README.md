@@ -1,6 +1,3 @@
-EADME.md</path>
-<div align="center">
-
 # ⚒️ ModelForge
 
 **A comprehensive web-based AI model benchmarking system for evaluating and comparing AI models across multiple providers and problem sets.**
